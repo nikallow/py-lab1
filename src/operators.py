@@ -34,7 +34,7 @@ class Operators:
             },
             '%': {
                 'arity': 2,
-                'priority': 3,
+                'priority': 2,
                 'func': self._modulo,
             },
             '^': {

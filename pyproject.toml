@@ -3,4 +3,6 @@ name = "lab1"
 version = "0.1.0"
 description = "Calculator M3 lab"
 requires-python = ">=3.12"
-dependencies = []
+dependencies = [
+    "pytest>=8.4.2",
+]
