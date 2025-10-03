@@ -25,7 +25,7 @@ class TokenParser:
             ParserError: При ошибке в разборе токенов.
         """
         if not expr or not (processed_expr := expr.strip()):
-            raise ParserError("Пустое выражение")
+            raise ParserError('Пустое выражение')
 
         tokens = []
 
@@ -42,9 +42,12 @@ class TokenParser:
 
             # Проверка на число
             try:
-                tokens.append(float(part) if '.' in part else int(part))
+                num = float(part) if '.' in part else int(part)
+                if isinstance(num, float) and num.is_integer():
+                    num = int(num)
+                tokens.append(num)
             except ValueError:
-                raise ParserError(f'Неизвестный токен: {part}')
+                raise ParserError(f'Неизвестный токен: {part}') from None
 
         if not tokens:
             raise ParserError('Выражение не содержит токенов')

@@ -1,6 +1,6 @@
 import pytest
+from src.exceptions import DivisionByZeroError, EvaluationError, InvalidOperandTypeError
 from src.rpn_evaluator import RPNEvaluator
-from src.exceptions import EvaluationError, DivisionByZeroError, InvalidOperandTypeError
 
 
 class TestRPNEvaluator:
@@ -45,7 +45,10 @@ class TestRPNEvaluator:
         assert self.evaluator.evaluate([3, '~', 4, '+']) == 1  # -3 + 4 = 1
 
         # Комбинированное выражение с разными операторами
-        assert self.evaluator.evaluate([3, 4, '+', 2, '*', 6, '/', 1, '+']) == 3.3333333333333335
+        assert (
+            self.evaluator.evaluate([3, 4, '+', 2, '*', 6, '/', 1, '+'])
+            == 3.3333333333333335
+        )
 
     def test_unary_operators(self):
         """Тестирование унарных операторов"""
@@ -98,7 +101,6 @@ class TestRPNEvaluator:
         with pytest.raises(EvaluationError):
             self.evaluator.evaluate([3, 4, '+', ')'])
 
-
     def test_parentheses_validation(self):
         """Тестирование проверки корректности скобок"""
 
@@ -116,33 +118,35 @@ class TestRPNEvaluator:
         self.evaluator.check_parentheses(['(', 3, '+', 4, ')', '(', 5, '*', 2, ')'])
 
         # 5. Сложная структура с вложенными скобками
-        self.evaluator.check_parentheses(['(', '(', 1, '+', 2, ')', '*', '(', 3, '-', 4, ')', ')'])
+        self.evaluator.check_parentheses(
+            ['(', '(', 1, '+', 2, ')', '*', '(', 3, '-', 4, ')', ')']
+        )
 
         # Тесты с неправильными скобками
         # 1. Непарная открывающая скобка
         with pytest.raises(EvaluationError) as excinfo:
             self.evaluator.check_parentheses(['('])
-        assert "Непарная открывающая скобка" in str(excinfo.value)
+        assert 'Непарная открывающая скобка' in str(excinfo.value)
 
         # 2. Несколько непарных открывающих скобок
         with pytest.raises(EvaluationError) as excinfo:
             self.evaluator.check_parentheses(['(', '(', ')'])
-        assert "Непарная открывающая скобка" in str(excinfo.value)
+        assert 'Непарная открывающая скобка' in str(excinfo.value)
 
         # 3. Непарная закрывающая скобка
         with pytest.raises(EvaluationError) as excinfo:
             self.evaluator.check_parentheses([')'])
-        assert "Непарная закрывающая скобка" in str(excinfo.value)
+        assert 'Непарная закрывающая скобка' in str(excinfo.value)
 
         # 4. Несколько непарных закрывающих скобок
         with pytest.raises(EvaluationError) as excinfo:
             self.evaluator.check_parentheses(['(', ')', ')'])
-        assert "Непарная закрывающая скобка" in str(excinfo.value)
+        assert 'Непарная закрывающая скобка' in str(excinfo.value)
 
         # 5. Неправильный порядок скобок
         with pytest.raises(EvaluationError) as excinfo:
             self.evaluator.check_parentheses([')', '('])
-        assert "Непарная закрывающая скобка" in str(excinfo.value)
+        assert 'Непарная закрывающая скобка' in str(excinfo.value)
 
         # 6. Сложные случаи неправильных скобок
         with pytest.raises(EvaluationError):

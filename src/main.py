@@ -1,6 +1,6 @@
 from src.calculator import Calculator
-from src.exceptions import CalculatorError
 from src.constants import HELP_TEXT
+from src.exceptions import CalculatorError
 
 
 def main():
@@ -14,10 +14,10 @@ def main():
 
     while True:
         try:
-            user_input = input("\nВведите выражение: ")
+            user_input = input('\nВведите выражение: ')
 
             if user_input.lower() == 'q':
-                print("Выход из программы")
+                print('Выход из программы')
                 break
 
             # Вычисление выражения
@@ -26,15 +26,15 @@ def main():
             # Форматирование вывода результата
             if isinstance(result, int) or result.is_integer():
                 # Если результат целочисленный, выводим без десятичной части
-                print(f"Результат: {int(result)}")
+                print(f'Результат: {int(result)}')
             else:
-                print(f"Результат: {result}")
+                print(f'Результат: {result}')
 
         except CalculatorError as e:
-            print(f"Ошибка: {str(e)}")
+            print(f'Ошибка: {str(e)}')
         except Exception as e:
-            print(f"Непредвиденная ошибка: {str(e)}")
+            print(f'Непредвиденная ошибка: {str(e)}')
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()

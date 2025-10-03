@@ -1,6 +1,6 @@
-from src.token_parser import TokenParser
-from src.rpn_evaluator import RPNEvaluator
 from src.exceptions import CalculatorError
+from src.rpn_evaluator import RPNEvaluator
+from src.token_parser import TokenParser
 
 
 class Calculator:
@@ -35,4 +35,7 @@ class Calculator:
             if isinstance(e, CalculatorError):
                 raise
             else:
-                raise CalculatorError(f"Ошибка при вычислении: {str(e)}")
+                if isinstance(e, CalculatorError):
+                    raise
+                else:
+                    raise CalculatorError(f'Ошибка при вычислении: {str(e)}') from e

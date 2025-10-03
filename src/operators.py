@@ -5,6 +5,7 @@ class Operators:
     """
     Класс операторов с их свойствами и функциями.
     """
+
     def __init__(self):
         self.operators = {
             '+': {
@@ -41,7 +42,7 @@ class Operators:
                 'arity': 2,
                 'priority': 3,
                 'right_associative': True,
-                'func': lambda a, b: a ** b,
+                'func': lambda a, b: a**b,
             },
             '~': {
                 'arity': 1,
@@ -52,7 +53,7 @@ class Operators:
                 'arity': 1,
                 'priority': 4,
                 'func': lambda a: a,
-            }
+            },
         }
 
     def _division(self, a, b):
@@ -89,7 +90,9 @@ class Operators:
             InvalidOperandTypeError: Если операнды не целые числа.
         """
         if not (isinstance(a, int) and isinstance(b, int)):
-            raise InvalidOperandTypeError("Операнды должны быть целыми числами для операции '//'")
+            raise InvalidOperandTypeError(
+                "Операнды должны быть целыми числами для операции '//'"
+            )
         if b == 0:
             raise DivisionByZeroError('Целочисленное деление на ноль')
         return a // b
@@ -110,7 +113,9 @@ class Operators:
             InvalidOperandTypeError: Если операнды не целые числа.
         """
         if not (isinstance(a, int) and isinstance(b, int)):
-            raise InvalidOperandTypeError("Операнды должны быть целыми числами для операции '%'")
+            raise InvalidOperandTypeError(
+                "Операнды должны быть целыми числами для операции '%'"
+            )
         if b == 0:
             raise DivisionByZeroError('Остаток от деления на ноль')
         return a % b

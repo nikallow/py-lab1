@@ -1,6 +1,7 @@
 import pytest
-from src.operators import Operators
 from src.exceptions import DivisionByZeroError, InvalidOperandTypeError
+from src.operators import Operators
+
 
 class TestOperators:
     def setup_method(self):
