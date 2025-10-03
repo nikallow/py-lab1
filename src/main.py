@@ -17,18 +17,12 @@ def main():
             user_input = input('\nВведите выражение: ')
 
             if user_input.lower() == 'q':
-                print('Выход из программы')
+                print('Выход из калькулятора')
                 break
 
-            # Вычисление выражения
+            # Вычисление выражения и вывод в консоль
             result = calculator.evaluate(user_input)
-
-            # Форматирование вывода результата
-            if isinstance(result, int) or result.is_integer():
-                # Если результат целочисленный, выводим без десятичной части
-                print(f'Результат: {int(result)}')
-            else:
-                print(f'Результат: {result}')
+            print(f'Результат: {result}')
 
         except CalculatorError as e:
             print(f'Ошибка: {str(e)}')

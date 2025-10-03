@@ -55,6 +55,10 @@ class RPNEvaluator:
                         a = stack.pop()
                         result = operator_info['func'](a, b)
 
+                    # Преобразовываем в int, если возможно
+                    if isinstance(result, int) or result.is_integer():
+                        result = int(result)
+
                     stack.append(result)
                 except DivisionByZeroError:
                     raise

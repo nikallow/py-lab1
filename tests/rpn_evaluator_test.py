@@ -50,6 +50,9 @@ class TestRPNEvaluator:
             == 3.3333333333333335
         )
 
+        # Выражение с целочисленным делением после обычного
+        assert self.evaluator.evaluate([4.5, 1.5, '/', 3, '//'])
+
     def test_unary_operators(self):
         """Тестирование унарных операторов"""
         # Унарный минус
