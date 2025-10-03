@@ -8,7 +8,7 @@ uv venv
 source .venv/bin/activate # Для Linux/MacOS
 .venv\Scripts\activate # Для Windows
 
-uv pip install
+uv sync
 ```
 ```bash
 uv run -m src.main # Запуск калькулятора
@@ -28,7 +28,7 @@ uv run -m pytest tests # Запуск тестов
 │   ├── main.py
 │   ├── operators.py # Операторы и их свойства
 │   ├── rpn_evaluator.py # Вычисление RPN
-│   └── token_parser.py # Разбивание на токены
+│   └── token_parser.py # Разбивание на токены и проверка скобок
 └── tests
     ├── calculator_test.py
     ├── operators_test.py
