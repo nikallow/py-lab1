@@ -12,32 +12,6 @@ class RPNEvaluator:
         self.operators = Operators()
         self.supported_operators = self.operators.get_operators()
 
-    def check_parentheses(self, tokens):
-        """
-        Проверяет корректность скобок в выражении.
-
-        Args:
-            tokens (list): Список токенов (числа, операторы и скобки).
-
-        Returns:
-            bool: True, если скобки сбалансированы, False в противном случае.
-
-        Raises:
-            EvaluationError: При несбалансированных скобках.
-        """
-
-        stack = []
-
-        for token in tokens:
-            if token == '(':
-                stack.append(token)
-            elif token == ')':
-                if not stack:
-                    raise EvaluationError('Непарная закрывающая скобка')
-                stack.pop()
-        if stack:
-            raise EvaluationError('Непарная открывающая скобка')
-
     def evaluate(self, tokens):
         """
         Вычисляет выражение в обратной польской нотации (RPN).
@@ -53,9 +27,6 @@ class RPNEvaluator:
             DivisionByZeroError: При попытке деления на ноль.
             InvalidOperandTypeError: При неподходящем типе операндов.
         """
-
-        # Проверяем правильность скобок
-        self.check_parentheses(tokens)
 
         stack = []
 
