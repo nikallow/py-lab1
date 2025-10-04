@@ -6,7 +6,7 @@
 uv venv
 
 source .venv/bin/activate # Для Linux/MacOS
-.venv\Scripts\activate # Для Windows
+source .venv\Scripts\activate # Для Windows
 
 uv sync
 ```
