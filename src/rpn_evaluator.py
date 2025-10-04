@@ -56,7 +56,7 @@ class RPNEvaluator:
                         result = operator_info['func'](a, b)
 
                     # Преобразовываем в int, если возможно
-                    if isinstance(result, int) or result.is_integer():
+                    if isinstance(result, float) and result.is_integer():
                         result = int(result)
 
                     stack.append(result)

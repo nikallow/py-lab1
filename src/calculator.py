@@ -34,8 +34,4 @@ class Calculator:
             # Преобразование всех исключений в CalculatorError
             if isinstance(e, CalculatorError):
                 raise
-            else:
-                if isinstance(e, CalculatorError):
-                    raise
-                else:
-                    raise CalculatorError(f'Ошибка при вычислении: {str(e)}') from e
+            raise CalculatorError(f'Ошибка при вычислении: {str(e)}') from e
